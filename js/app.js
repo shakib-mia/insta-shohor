@@ -36,13 +36,15 @@ const switchTab = (id) => {
     document.getElementById("liked").style.display = "none";
     document.getElementById("reported").style.display = "none";
   } else if (id === "liked") {
-    document.getElementById("liked").style.display = "grid";
+    document.getElementById("liked").style.display = "flex";
+    document.getElementById("liked").style.gap = "10px";
+    document.getElementById("liked").style.justifyContent = "around";
     document.getElementById("posts").style.display = "none";
     document.getElementById("reported").style.display = "none";
 
     displayLikedPosts();
   } else {
-    document.getElementById("reported").style.display = "block";
+    document.getElementById("reported").style.display = "flex";
     document.getElementById("posts").style.display = "none";
     document.getElementById("liked").style.display = "none";
 
@@ -143,9 +145,11 @@ const showPosts = (posts) => {
 
 const displayLikedPosts = () => {
   const likedPosts = getLikedPosts();
-  document.getElementById("liked").innerHTML = "";
+  document.getElementById('liked').innerHTML = "";
+
   likedPosts.forEach((post) => {
-    var div = createPost(post);
+    const div = createPost(post);
+    div.classList.add('col-4', 'mx-0');
     document.getElementById("liked").appendChild(div);
   });
 };
@@ -153,8 +157,10 @@ const displayLikedPosts = () => {
 const displayReportedPosts = () => {
   const reportedPosts = getReportedPosts();
   document.getElementById("reported").innerHTML = "";
+
   reportedPosts.forEach((post) => {
     const div = createPost(post);
+    div.classList.add('col-4', 'mx-1');
     document.getElementById("reported").appendChild(div);
   });
 };
