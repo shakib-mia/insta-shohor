@@ -36,15 +36,19 @@ const switchTab = (id) => {
     document.getElementById("liked").style.display = "none";
     document.getElementById("reported").style.display = "none";
   } else if (id === "liked") {
-    document.getElementById("liked").style.display = "flex";
-    document.getElementById("liked").style.gap = "10px";
-    document.getElementById("liked").style.justifyContent = "around";
+    document.getElementById("liked").style.display = "block";
+    document.getElementById("liked-content").style.display = "flex";
+    document.getElementById("liked-content").style.gap = "10px";
+    document.getElementById("liked-content").style.justifyContent = "around";
     document.getElementById("posts").style.display = "none";
     document.getElementById("reported").style.display = "none";
 
     displayLikedPosts();
   } else {
-    document.getElementById("reported").style.display = "flex";
+    document.getElementById("reported").style.display = "block";
+    document.getElementById("reported-content").style.display = "flex";
+    document.getElementById("reported-content").style.gap = "10px";
+    document.getElementById("reported-content").style.justifyContent = "around";
     document.getElementById("posts").style.display = "none";
     document.getElementById("liked").style.display = "none";
 
@@ -145,23 +149,23 @@ const showPosts = (posts) => {
 
 const displayLikedPosts = () => {
   const likedPosts = getLikedPosts();
-  document.getElementById('liked').innerHTML = "";
+  document.getElementById('liked-content').innerHTML = "";
 
   likedPosts.forEach((post) => {
     const div = createPost(post);
-    div.classList.add('col-4', 'mx-0');
-    document.getElementById("liked").appendChild(div);
+    div.classList.add('col-lg-4', 'col-md-6', 'col-12');
+    document.getElementById("liked-content").appendChild(div);
   });
 };
 
 const displayReportedPosts = () => {
   const reportedPosts = getReportedPosts();
-  document.getElementById("reported").innerHTML = "";
+  document.getElementById("reported-content").innerHTML = "";
 
   reportedPosts.forEach((post) => {
     const div = createPost(post);
-    div.classList.add('col-4', 'mx-1');
-    document.getElementById("reported").appendChild(div);
+    div.classList.add('col-12', 'col-md-6', 'col-lg-4');
+    document.getElementById("reported-content").appendChild(div);
   });
 };
 
